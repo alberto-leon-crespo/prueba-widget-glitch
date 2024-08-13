@@ -24,10 +24,10 @@ function PaymentButtonForm() {
         planName: '',
         planDescription: '',
         planAmount: '',
-        planCurrency: 'EUR',
-        planType: 'Subscription',
-        typeSubscription: 'fixed',
-        planFrequency: 'month',
+        planCurrency: '',
+        planType: '',
+        typeSubscription: '',
+        planFrequency: '',
         planBillingCycles: '',
         planPaymentDay: '',
         futureChargeAction: '',
@@ -209,6 +209,7 @@ function PaymentButtonForm() {
                     <input
                         type="number"
                         name="consumeUnits"
+                        step="1"
                         value={formData.consumeUnits}
                         onChange={handleChange}
                     />
