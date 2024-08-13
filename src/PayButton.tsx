@@ -18,9 +18,12 @@ const PayButton: React.FC = () => {
 
     return (
         <div>
-            <button className="uelz-button uelz-button-styles" data-service-id="clugt6j6e02k0pk01zsy80r2c">Comprar</button>
-            <br/>
-            <Link to="/">Counter</Link>
+            <nav>
+                <Link to="/">Back to main</Link>
+            </nav>
+            <br />
+            <button className="uelz-button uelz-button-styles" data-service-id="clugt6j6e02k0pk01zsy80r2c">Comprar
+            </button>
         </div>
     );
 };
