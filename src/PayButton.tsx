@@ -6,11 +6,11 @@ const PayButton: React.FC = () => {
     const location = useLocation();
     useEffect(() => {
         const uelzWidget = (window as any).uelzWidget;
-        if (uelzWidget.widgetRoot) {
+        if (uelzWidget) {
             uelzWidget.initializeComponent();
         }
         return () => {
-            if (uelzWidget.widgetRoot) {
+            if (uelzWidget) {
                 uelzWidget.unloadComponent(); // Asegura que el widget se desmonte cuando el componente se desmonte o la ruta cambie
             }
         };
