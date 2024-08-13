@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
 
-const PayButton: React.FC = () => {
-    const location = useLocation();
+const uelzWidget = (window as any).uelzWidget;
 
+const PayButton: React.FC = () => {
+
+    const location = useLocation();
     useEffect(() => {
         const initializeWidget = async () => {
-            const uelzWidget = (window as any).uelzWidget;
-            console.log(uelzWidget);
             if (!uelzWidget.widgetRoot) {
                 try {
                     await uelzWidget.init(); // Espera a que el widget se inicialice
@@ -18,7 +18,6 @@ const PayButton: React.FC = () => {
         };
 
         const unloadWidget = async () => {
-            const uelzWidget = (window as any).uelzWidget;
             if (uelzWidget.widgetRoot) {
                 try {
                     await uelzWidget.unload(); // Espera a que el widget se desmonte
@@ -28,6 +27,7 @@ const PayButton: React.FC = () => {
             }
         };
 
+        unloadWidget();
         initializeWidget();
 
         return () => {
