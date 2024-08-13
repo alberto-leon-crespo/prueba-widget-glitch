@@ -27,7 +27,6 @@ const PayButton: React.FC = () => {
             }
         };
 
-        unloadWidget();
         initializeWidget();
 
         return () => {
