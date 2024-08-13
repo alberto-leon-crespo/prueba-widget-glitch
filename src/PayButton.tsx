@@ -5,9 +5,14 @@ const PayButton: React.FC = () => {
 
     const location = useLocation();
     useEffect(() => {
-        (window as any).uelzWidget.initializeComponent();
+        const uelzWidget = (window as any).uelzWidget;
+        if (uelzWidget) {
+            uelzWidget.initializeComponent();
+        }
         return () => {
-            (window as any).uelzWidget.unloadComponent(); // Asegura que el widget se desmonte cuando el componente se desmonte o la ruta cambie
+            if (uelzWidget) {
+                uelzWidget.unloadComponent(); // Asegura que el widget se desmonte cuando el componente se desmonte o la ruta cambie
+            }
         };
     }, [location.pathname]);
 
