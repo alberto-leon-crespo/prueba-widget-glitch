@@ -5,17 +5,33 @@ const PayButton: React.FC = () => {
     const location = useLocation();
 
     useEffect(() => {
-        // Inicializar el widget al montar el componente
-        const uelzWidget = (window as any).uelzWidget;
-        if (!uelzWidget.widgetRoot) {
-            uelzWidget.init();
-        }
-
-        // Desmontar el widget cuando el componente se desmonte o la ruta cambie
-        return () => {
-            if (uelzWidget.widgetRoot) {
-                uelzWidget.unload();
+        const initializeWidget = async () => {
+            const uelzWidget = (window as any).uelzWidget;
+            console.log(uelzWidget);
+            if (!uelzWidget.widgetRoot) {
+                try {
+                    await uelzWidget.init(); // Espera a que el widget se inicialice
+                } catch (error) {
+                    console.error("Error al inicializar el widget:", error);
+                }
             }
+        };
+
+        const unloadWidget = async () => {
+            const uelzWidget = (window as any).uelzWidget;
+            if (uelzWidget.widgetRoot) {
+                try {
+                    await uelzWidget.unload(); // Espera a que el widget se desmonte
+                } catch (error) {
+                    console.error("Error al desmontar el widget:", error);
+                }
+            }
+        };
+
+        initializeWidget();
+
+        return () => {
+            unloadWidget(); // Asegura que el widget se desmonte cuando el componente se desmonte o la ruta cambie
         };
     }, [location.pathname]);
 
