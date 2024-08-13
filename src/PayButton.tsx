@@ -18,7 +18,7 @@ const PayButton: React.FC = () => {
 
         const unloadWidget = async () => {
             const uelzWidget = (window as any).uelzWidget;
-            if (uelzWidget.widgetRoot) {
+            if (uelzWidget && uelzWidget.widgetRoot) {
                 try {
                     await uelzWidget.unload(); // Espera a que el widget se desmonte
                 } catch (error) {
