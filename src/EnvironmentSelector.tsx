@@ -92,6 +92,7 @@ const EnvironmentSelector: React.FC = () => {
         script.id = 'uelz-script';
         script.src = scriptUrl;
         script.async = true;
+        script.defer = true;
 
         // Añadir un manejador de eventos para confirmar la carga del script
         script.onload = () => {
