@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Link, useLocation} from "react-router-dom";
 
 interface Environment {
     name: string;
@@ -38,6 +38,20 @@ const EnvironmentSelector: React.FC = () => {
     const [apiKey, setApiKey] = useState<string>('');
     const [selectedApiUrl, setSelectedApiUrl] = useState<string>(apiUrls[0].url);
     const [selectedPaymentsUrl, setSelectedPaymentsUrl] = useState<string>(paymentsUrls[0].url);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        const uelzWidget = (window as any).uelzWidget;
+        if (uelzWidget) {
+            uelzWidget.initializeComponent();
+        }
+        return () => {
+            if (uelzWidget) {
+                uelzWidget.unloadComponent(); // Asegura que el widget se desmonte cuando el componente se desmonte o la ruta cambie
+            }
+        };
+    }, [location.pathname]);
 
     const handleEnvironmentChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedEnv = environments.find(env => env.name === event.target.value);
