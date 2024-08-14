@@ -18,6 +18,7 @@ const Counter: React.FC<CounterProps> = () => {
             <nav>
                 <Link to="/">Back to main</Link>
             </nav>
+            <br />
             <h2>Counter: {count}</h2>
             <button onClick={increment}>Increment</button>
             <br />
