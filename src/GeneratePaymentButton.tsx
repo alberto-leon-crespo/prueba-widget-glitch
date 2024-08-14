@@ -1,5 +1,6 @@
 import React, {useState, ChangeEvent, FormEvent, useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
+import {countriesData} from "./data/CountriesData";
 
 interface FormData {
     serviceName: string;
@@ -16,6 +17,22 @@ interface FormData {
     consumeUnits: string;
     externalUsageId: string;
     serviceId: string;
+    customerEmail: string;
+    customerCif: string;
+    customerType: string;
+    name: string;
+    surname: string;
+    companyName: string;
+    prefix: string;
+    phone: string;
+    country: string;
+    city: string;
+    postalCode: string;
+    address: string;
+    customerNotEditable: boolean;
+    externalProductId: string;
+    externalCustomerId: string;
+    externalOrderId: string;
 }
 
 function PaymentButtonForm() {
@@ -33,7 +50,23 @@ function PaymentButtonForm() {
         futureChargeAction: '',
         consumeUnits: '',
         externalUsageId: '',
-        serviceId: ''
+        serviceId: '',
+        customerEmail: '',
+        customerCif: '',
+        customerType: 'PERSON',
+        name: '',
+        surname: '',
+        companyName: '',
+        prefix: '',
+        phone: '',
+        country: 'ES',
+        city: '',
+        postalCode: '',
+        address: '',
+        customerNotEditable: false,
+        externalProductId: '',
+        externalCustomerId: '',
+        externalOrderId: ''
     });
 
     const [buttonGenerated, setButtonGenerated] = useState<boolean>(false);
@@ -91,6 +124,7 @@ function PaymentButtonForm() {
             </nav>
             <br/>
             <form onSubmit={handleSubmit}>
+                <h1>Datos del plan</h1>
                 <div>
                     <label>Service Name:</label>
                     <input
@@ -150,7 +184,7 @@ function PaymentButtonForm() {
                     </select>
                 </div>
                 <div>
-                <label>Type Subscription:</label>
+                    <label>Type Subscription:</label>
                     <select
                         name="typeSubscription"
                         value={formData.typeSubscription}
@@ -229,6 +263,153 @@ function PaymentButtonForm() {
                         type="text"
                         name="serviceId"
                         value={formData.serviceId}
+                        onChange={handleChange}
+                    />
+                </div>
+                {/* Datos del Cliente */}
+                <h1>Datos del cliente</h1>
+                <div>
+                    <label>Customer Email:</label>
+                    <input
+                        type="email"
+                        name="customerEmail"
+                        value={formData.customerEmail}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Customer CIF:</label>
+                    <input
+                        type="text"
+                        name="customerCif"
+                        value={formData.customerCif}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Customer Type:</label>
+                    <select
+                        name="customerType"
+                        value={formData.customerType}
+                        onChange={handleChange}
+                    >
+                        <option value="">None</option>
+                        <option value="PERSON">PERSON</option>
+                        <option value="COMPANY">COMPANY</option>
+                    </select>
+                </div>
+                <div>
+                    <label>First Name:</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Surname:</label>
+                    <input
+                        type="text"
+                        name="surname"
+                        value={formData.surname}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Company Name:</label>
+                    <input
+                        type="text"
+                        name="companyName"
+                        value={formData.companyName}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Phone Prefix:</label>
+                    <input
+                        type="text"
+                        name="prefix"
+                        value={formData.prefix}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Phone Number:</label>
+                    <input
+                        type="text"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Country:</label>
+                    <select
+                        name="country"
+                        value={formData.country}
+                        onChange={handleChange}
+                    >
+                        {countriesData.map((country) => (
+                            <option key={country.code} value={country.code}>
+                                {country.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label>City:</label>
+                    <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Postal Code:</label>
+                    <input
+                        type="text"
+                        name="postalCode"
+                        value={formData.postalCode}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Address:</label>
+                    <input
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                {/* Datos Adicionales */}
+                <div>
+                    <label>External Product ID:</label>
+                    <input
+                        type="text"
+                        name="externalProductId"
+                        value={formData.externalProductId}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>External Customer ID:</label>
+                    <input
+                        type="text"
+                        name="externalCustomerId"
+                        value={formData.externalCustomerId}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>External Order ID:</label>
+                    <input
+                        type="text"
+                        name="externalOrderId"
+                        value={formData.externalOrderId}
                         onChange={handleChange}
                     />
                 </div>
