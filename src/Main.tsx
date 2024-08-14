@@ -9,8 +9,9 @@ const Main: React.FC = () => {
                 <Link className={MainStyles.navLink} to="/paybutton">Pay Button</Link>
                 <Link className={MainStyles.navLink} to="/counter">Counter</Link>
                 <Link className={MainStyles.navLink} to="/generate-payment-button">Generate Payment Button</Link>
+                <Link className={MainStyles.navLink} to="/environment-selector">Environment Selector</Link>
             </nav>
-            <h2>Hello!</h2>
+            <h2>React APP Widget Tester</h2>
             <br />
         </div>
     );
