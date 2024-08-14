@@ -17,7 +17,7 @@ const environments: Environment[] = [
     },
     {
         name: 'Producción',
-        baseUrl: 'https://uelzpay-widget-cdn-production.vercel.app/v1.0.0/uelz-widget.js',
+        baseUrl: 'https://uelzpay-widget-cdn.vercel.app/v1.0.0/uelz-widget.js',
     },
 ];
 
