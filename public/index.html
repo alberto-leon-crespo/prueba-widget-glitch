@@ -39,6 +39,37 @@
   To begin the development, run `npm start` or `yarn start`.
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
-<script id="uelz-script" defer src="https://uelzpay-widget-cdn-develop.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=clu8f60nr003fnw01jesapjg0&uelz-api-url=https://widget.develop.uelzpay.com"></script>
+<script type="application/javascript">
+  // Leer los valores desde el localStorage
+  const environment = localStorage.getItem('uelz-env') || 'default';
+  const apiUrl = localStorage.getItem('uelz-api-url') || 'https://default-api-url.com';
+  const paymentsUrl = localStorage.getItem('uelz-payments-url') || 'https://default-payments-url.com';
+  const apiKey = localStorage.getItem('uelz-api-key') || 'default-api-key';
+
+  // Determinar el script a cargar basado en el entorno
+  let scriptSrc;
+  switch (environment) {
+    case 'demo':
+      scriptSrc = `https://uelzpay-widget-cdn-demo.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=${apiKey}&uelz-api-url=${apiUrl}&uelz-payments-url=${paymentsUrl}`;
+      break;
+    case 'prod':
+      scriptSrc = `https://uelzpay-widget-cdn.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=${apiKey}&uelz-api-url=${apiUrl}&uelz-payments-url=${paymentsUrl}`;
+      break;
+    case 'develop':
+      scriptSrc = `https://uelzpay-widget-cdn-develop.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=${apiKey}&uelz-api-url=${apiUrl}&uelz-payments-url=${paymentsUrl}`;
+      break;
+    default:
+      scriptSrc = `https://uelzpay-widget-cdn-default.vercel.app/v1.0.0/uelz-widget.js?uelz-api-key=${apiKey}&uelz-api-url=${apiUrl}&uelz-payments-url=${paymentsUrl}`;
+      break;
+  }
+
+  // Cargar el script dinámicamente
+  const script = document.createElement('script');
+  script.src = scriptSrc;
+  script.id = 'uelz-script';
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+</script>
 </body>
 </html>
