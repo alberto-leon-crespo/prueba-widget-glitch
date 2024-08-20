@@ -85,7 +85,7 @@ const EnvironmentSelector: React.FC = () => {
         }
 
         // Construir la URL del script con los query params
-        const scriptUrl = `${selectedEnvironment.baseUrl}?uelz-api-key=${apiKey}&uelz-api-url=${encodeURIComponent(selectedApiUrl)}&uelz-payments-url=${encodeURIComponent(selectedPaymentsUrl)}`;
+        const scriptUrl = `${selectedEnvironment.baseUrl}?uelz-api-key=${apiKey}&uelz-api-url=${selectedApiUrl}&uelz-payments-url=${selectedPaymentsUrl}`;
 
         // Crear y añadir el script del widget del entorno seleccionado
         const script = document.createElement('script');
