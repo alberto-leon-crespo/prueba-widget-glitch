@@ -74,15 +74,14 @@ const EnvironmentSelector: React.FC = () => {
 
     const handleButtonClick = () => {
         // Eliminar cualquier script de widget previamente cargado
+        const uelzWidget = (window as any).uelzWidget;
         const existingScript = document.getElementById('uelz-script');
         if (existingScript) {
-            const uelzWidget = (window as any).uelzWidget;
             if (uelzWidget) {
                 uelzWidget.unloadComponent();
             }
             existingScript.remove();
             (window as any).uelzWidget = null;
-            alert("Descargado el script del widget de la pagina.");
         }
 
         // Construir la URL del script con los query params
@@ -96,16 +95,17 @@ const EnvironmentSelector: React.FC = () => {
         script.defer = true;
 
         // Añadir un manejador de eventos para confirmar la carga del script
-        script.onload = () => {
-            console.log(`Script cargado desde ${scriptUrl}`);
+        script.onload = async () => {
+            await uelzWidget.initializeComponent();
+            alert(`Script cargado desde ${scriptUrl}`);
         };
 
-        script.onerror = () => {
-            console.error(`Error al cargar el script desde ${scriptUrl}`);
+        script.onerror = async () => {
+            await uelzWidget.unloadComponent();
+            alert(`Error al cargar el script desde ${scriptUrl}`);
         };
 
         document.body.appendChild(script);
-        alert("Carga completada del nuevo script.");
     };
 
     return (
