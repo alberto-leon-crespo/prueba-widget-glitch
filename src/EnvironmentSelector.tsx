@@ -81,6 +81,7 @@ const EnvironmentSelector: React.FC = () => {
                 uelzWidget.unloadComponent();
             }
             existingScript.remove();
+            (window as any).uelzWidget = null;
             alert("Descargado el script del widget de la pagina.");
         }
 
