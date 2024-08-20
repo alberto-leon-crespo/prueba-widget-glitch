@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 
 interface Environment {
     name: string;
@@ -72,6 +73,10 @@ const EnvironmentSelector: React.FC = () => {
 
     return (
         <div>
+            <nav>
+                <Link to="/">Back to main</Link>
+            </nav>
+            <br/>
             <label htmlFor="environment-select">Selecciona el entorno:</label>
             <select id="environment-select" value={selectedEnvironment} onChange={handleEnvironmentChange}>
                 {environments.map(env => (
